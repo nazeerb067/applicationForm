@@ -148,6 +148,11 @@ public class PersonalDtlsForm {
     @OneToOne(mappedBy = "personalDetails", cascade = CascadeType.ALL)
     private BankDetails bankDetails;
     
+    @OneToOne(mappedBy = "personalDetails", cascade = CascadeType.ALL)
+    private SchemeSelection schemeSelection;
+    
+    
+    
     
     
    
