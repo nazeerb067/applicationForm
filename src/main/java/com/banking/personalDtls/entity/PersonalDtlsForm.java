@@ -1,12 +1,15 @@
 package com.banking.personalDtls.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -150,6 +153,46 @@ public class PersonalDtlsForm {
     
     @OneToOne(mappedBy = "personalDetails", cascade = CascadeType.ALL)
     private SchemeSelection schemeSelection;
+    
+    @OneToMany(mappedBy = "personalDtlsForm", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NomineeDetails> nominees = new ArrayList<>();
+    
+    @OneToOne(mappedBy = "personalDetails", cascade = CascadeType.ALL)
+    private UploadDocuments uploadDocumnets;
+
+
+	public BankDetails getBankDetails() {
+		return bankDetails;
+	}
+
+
+	public void setBankDetails(BankDetails bankDetails) {
+		this.bankDetails = bankDetails;
+	}
+
+
+	public SchemeSelection getSchemeSelection() {
+		return schemeSelection;
+	}
+
+
+	public void setSchemeSelection(SchemeSelection schemeSelection) {
+		this.schemeSelection = schemeSelection;
+	}
+
+
+	public List<NomineeDetails> getNominees() {
+		return nominees;
+	}
+
+
+	public void setNominees(List<NomineeDetails> nominees) {
+		this.nominees = nominees;
+	}
+
+
+
+    
     
     
     

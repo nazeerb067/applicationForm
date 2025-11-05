@@ -11,10 +11,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.ToString;
 
 @Entity
 @Table(name = "NomineeDetails")
+@Builder
 public class NomineeDetails {
 	
 	@Id
@@ -36,9 +38,11 @@ public class NomineeDetails {
     @ToString.Exclude
     private SchemeSelection schemeSelection;
 
-	@OneToOne
-	@JoinColumn(name = "personal_Id")
-	private PersonalDtlsForm personalDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "personal_id") // FK column name in nominee_details table
+    private PersonalDtlsForm personalDtlsForm;
+    
 
 	public Long getId() {
 		return Id;
@@ -169,6 +173,19 @@ public class NomineeDetails {
 	public void setSchemeSelection(SchemeSelection schemeSelection) {
 		this.schemeSelection = schemeSelection;
 	}
+
+
+	public PersonalDtlsForm getPersonalDtlsForm() {
+		return personalDtlsForm;
+	}
+
+
+	public void setPersonalDtlsForm(PersonalDtlsForm personalDtlsForm) {
+		this.personalDtlsForm = personalDtlsForm;
+	}
+
+
+	
 	
 			
 
